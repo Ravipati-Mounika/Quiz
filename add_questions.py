@@ -575,6 +575,215 @@ Question(
     option3="color",
     option4="foreground",
     answer="color"
+),
+Question(
+    category="Python",
+    question="Which keyword is used to define a function?",
+    option1="function",
+    option2="def",
+    option3="define",
+    option4="fun",
+    answer="def"
+),
+
+Question(
+    category="Python",
+    question="Which data structure stores unique values?",
+    option1="List",
+    option2="Tuple",
+    option3="Set",
+    option4="Dictionary",
+    answer="Set"
+),
+
+Question(
+    category="Python",
+    question="Which function returns the length of an object?",
+    option1="size()",
+    option2="length()",
+    option3="len()",
+    option4="count()",
+    answer="len()"
+),
+
+Question(
+    category="Java",
+    question="Which keyword is used to create an object?",
+    option1="object",
+    option2="create",
+    option3="new",
+    option4="make",
+    answer="new"
+),
+
+Question(
+    category="Java",
+    question="Which method is the entry point of a Java program?",
+    option1="start()",
+    option2="main()",
+    option3="run()",
+    option4="execute()",
+    answer="main()"
+),
+
+Question(
+    category="Java",
+    question="Which keyword is used for inheritance?",
+    option1="inherit",
+    option2="extends",
+    option3="implements",
+    option4="inherits",
+    answer="extends"
+),
+
+Question(
+    category="SQL",
+    question="Which command is used to retrieve data?",
+    option1="INSERT",
+    option2="UPDATE",
+    option3="SELECT",
+    option4="DELETE",
+    answer="SELECT"
+),
+
+Question(
+    category="SQL",
+    question="Which clause is used to filter records?",
+    option1="ORDER BY",
+    option2="WHERE",
+    option3="GROUP BY",
+    option4="SORT",
+    answer="WHERE"
+),
+
+Question(
+    category="SQL",
+    question="Which key uniquely identifies a record?",
+    option1="Foreign Key",
+    option2="Primary Key",
+    option3="Candidate Key",
+    option4="Secondary Key",
+    answer="Primary Key"
+),
+
+Question(
+    category="C",
+    question="Who developed the C language?",
+    option1="James Gosling",
+    option2="Dennis Ritchie",
+    option3="Guido van Rossum",
+    option4="Bjarne Stroustrup",
+    answer="Dennis Ritchie"
+),
+
+Question(
+    category="C",
+    question="Which header file contains printf()?",
+    option1="stdlib.h",
+    option2="stdio.h",
+    option3="string.h",
+    option4="math.h",
+    answer="stdio.h"
+),
+
+Question(
+    category="C",
+    question="Which loop executes at least once?",
+    option1="for",
+    option2="while",
+    option3="do-while",
+    option4="foreach",
+    answer="do-while"
+),
+
+Question(
+    category="Data Structures",
+    question="Which data structure follows LIFO?",
+    option1="Queue",
+    option2="Stack",
+    option3="Tree",
+    option4="Graph",
+    answer="Stack"
+),
+
+Question(
+    category="Data Structures",
+    question="Which data structure follows FIFO?",
+    option1="Stack",
+    option2="Queue",
+    option3="Tree",
+    option4="Array",
+    answer="Queue"
+),
+
+Question(
+    category="Data Structures",
+    question="Which search algorithm requires sorted data?",
+    option1="Linear Search",
+    option2="Binary Search",
+    option3="Sequential Search",
+    option4="Random Search",
+    answer="Binary Search"
+),
+
+Question(
+    category="DBMS",
+    question="What does DBMS stand for?",
+    option1="Database Management System",
+    option2="Data Backup Management System",
+    option3="Database Machine System",
+    option4="Data Management Software",
+    answer="Database Management System"
+),
+
+Question(
+    category="DBMS",
+    question="Which key connects two tables?",
+    option1="Primary Key",
+    option2="Foreign Key",
+    option3="Super Key",
+    option4="Unique Key",
+    answer="Foreign Key"
+),
+
+Question(
+    category="DBMS",
+    question="Which normal form removes repeating groups?",
+    option1="1NF",
+    option2="2NF",
+    option3="3NF",
+    option4="BCNF",
+    answer="1NF"
+),
+
+Question(
+    category="HTML/CSS",
+    question="Which language is used to style web pages?",
+    option1="HTML",
+    option2="CSS",
+    option3="SQL",
+    option4="Python",
+    answer="CSS"
+),
+
+Question(
+    category="HTML/CSS",
+    question="Which HTML tag creates a hyperlink?",
+    option1="<link>",
+    option2="<a>",
+    option3="<href>",
+    option4="<url>",
+    answer="<a>"
+),
+
+Question(
+    category="HTML/CSS",
+    question="Which CSS property changes text color?",
+    option1="font",
+    option2="text-color",
+    option3="color",
+    option4="foreground",
+    answer="color"
 )
 
 ]
