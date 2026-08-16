@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="result-container">
+
+    <h1>Quiz Completed!</h1>
+
+    <div class="score-circle">
+
+        {{ percentage }}%
+
+    </div>
+
+    <h2>
+        {{ score }} / {{ total }}
+    </h2>
+
+    {% if percentage >= 80 %}
+
+    <p class="success">
+        Excellent! Great performance.
+    </p>
+
+    {% elif percentage >= 50 %}
+
+    <p class="warning">
+        Good job! Keep practicing.
+    </p>
+
+    {% else %}
+
+    <p class="danger">
+        Keep learning and try again.
+    </p>
+
+    {% endif %}
+
+    <h2>Answer Review</h2>
+
+    {% for item in review %}
+
+    <div class="review-card">
+
+        <h3>
+            {{ loop.index }}. {{ item.question }}
+        </h3>
+
+        <p>
+            Your Answer:
+            <strong>
+                {{ item.selected or "Not answered" }}
+            </strong>
+        </p>
+
+        <p>
+            Correct Answer:
+            <strong>
+                {{ item.correct_answer }}
+            </strong>
+        </p>
+
+    </div>
+
+    {% endfor %}
+
+    <a class="btn"
+       href="{{ url_for('dashboard') }}">
+        Try Another Quiz
+    </a>
+
+</div>
+
+{% endblock %}

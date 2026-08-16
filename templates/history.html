@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+
+    <h1>Quiz History</h1>
+
+    {% if results %}
+
+    <table>
+
+        <tr>
+            <th>Category</th>
+            <th>Score</th>
+            <th>Total</th>
+            <th>Percentage</th>
+        </tr>
+
+        {% for result in results %}
+
+        <tr>
+
+            <td>
+                {{ result.category }}
+            </td>
+
+            <td>
+                {{ result.score }}
+            </td>
+
+            <td>
+                {{ result.total }}
+            </td>
+
+            <td>
+                {{ ((result.score / result.total) * 100)|round|int }}%
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+    {% else %}
+
+    <p>
+        No quiz attempts yet.
+    </p>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

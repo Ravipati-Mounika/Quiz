@@ -1,0 +1,307 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="dashboard">
+
+    <!-- USER WELCOME -->
+
+    <div class="welcome">
+
+        <div>
+
+            <p class="small-text">
+                Welcome back 👋
+            </p>
+
+            <h1>
+                {{ user.username }}
+            </h1>
+
+            <p>
+                {{ user.email }}
+            </p>
+
+        </div>
+
+        <div class="profile-icon">
+            {{ user.username[0]|upper }}
+        </div>
+
+    </div>
+
+
+    <!-- USER INFORMATION -->
+
+    <div class="user-info">
+
+        <div class="info-card">
+
+            <span>👤</span>
+
+            <div>
+                <p>Username</p>
+
+                <h3>
+                    {{ user.username }}
+                </h3>
+            </div>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <span>📧</span>
+
+            <div>
+                <p>Email</p>
+
+                <h3>
+                    {{ user.email }}
+                </h3>
+            </div>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <span>🆔</span>
+
+            <div>
+                <p>User ID</p>
+
+                <h3>
+                    #{{ user.id }}
+                </h3>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- STATISTICS -->
+
+    <h2 class="section-title">
+        Your Statistics
+    </h2>
+
+    <div class="stats">
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📝
+            </div>
+
+            <div>
+                <p>Quizzes Taken</p>
+
+                <h2>
+                    {{ total_quizzes }}
+                </h2>
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📊
+            </div>
+
+            <div>
+                <p>Average Score</p>
+
+                <h2>
+                    {{ average_score }}%
+                </h2>
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🏆
+            </div>
+
+            <div>
+                <p>Best Score</p>
+
+                <h2>
+                    {{ best_score }}%
+                </h2>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- QUIZ CATEGORIES -->
+
+    <div class="title-row">
+
+        <div>
+
+            <h2>
+                Available Quizzes
+            </h2>
+
+            <p>
+                Select a category and test your knowledge.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="category-grid">
+
+        {% for category in categories %}
+
+        <div class="category-card">
+
+            {% if category == "Python" %}
+
+                <div class="category-icon">
+                    🐍
+                </div>
+
+            {% elif category == "Java" %}
+
+                <div class="category-icon">
+                    ☕
+                </div>
+
+            {% elif category == "SQL" %}
+
+                <div class="category-icon">
+                    🗄️
+                </div>
+
+            {% elif category == "C" %}
+
+                <div class="category-icon">
+                    💻
+                </div>
+
+            {% elif category == "Data Structures" %}
+
+                <div class="category-icon">
+                    🌳
+                </div>
+
+            {% elif category == "DBMS" %}
+
+                <div class="category-icon">
+                    🗃️
+                </div>
+
+            {% else %}
+
+                <div class="category-icon">
+                    🌐
+                </div>
+
+            {% endif %}
+
+
+            <h2>
+                {{ category }}
+            </h2>
+
+            <p>
+                Test your {{ category }} knowledge
+            </p>
+
+            <a
+                class="btn"
+                href="{{ url_for('quiz', category=category) }}"
+            >
+                Start Quiz →
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+
+    <!-- RECENT RESULTS -->
+
+    <div class="title-row">
+
+        <h2>
+            Recent Quiz Results
+        </h2>
+
+        <a
+            href="{{ url_for('history') }}"
+            class="view-link"
+        >
+            View All
+        </a>
+
+    </div>
+
+
+    {% if recent_results %}
+
+    <div class="recent-results">
+
+        {% for result in recent_results %}
+
+        <div class="result-row">
+
+            <div>
+
+                <strong>
+                    {{ result.category }}
+                </strong>
+
+                <p>
+                    Score: {{ result.score }}/{{ result.total }}
+                </p>
+
+            </div>
+
+
+            <div class="result-percentage">
+
+                {{ ((result.score / result.total) * 100)|round|int }}%
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <div class="empty">
+
+        <h3>
+            No quiz attempts yet
+        </h3>
+
+        <p>
+            Start your first quiz above!
+        </p>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

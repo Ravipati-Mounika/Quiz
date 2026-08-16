@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="hero">
+
+    <div>
+
+        <h1>
+            Test Your Knowledge
+        </h1>
+
+        <p>
+            Learn. Practice. Improve.
+        </p>
+
+        <a class="btn"
+           href="{{ url_for('register') }}">
+            Start Quiz
+        </a>
+
+    </div>
+
+</section>
+
+<section class="features">
+
+    <div class="feature">
+        <h2>Multiple Categories</h2>
+        <p>Practice Python, Java, SQL and more.</p>
+    </div>
+
+    <div class="feature">
+        <h2>Timed Quiz</h2>
+        <p>Challenge yourself with a countdown timer.</p>
+    </div>
+
+    <div class="feature">
+        <h2>Instant Results</h2>
+        <p>Get your score immediately after submission.</p>
+    </div>
+
+</section>
+
+{% endblock %}
