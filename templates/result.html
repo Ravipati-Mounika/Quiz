@@ -2,72 +2,127 @@
 
 {% block content %}
 
-<div class="result-container">
+<div class="result-page">
 
-    <h1>Quiz Completed!</h1>
+    <div class="score-card">
 
-    <div class="score-circle">
+        <div class="trophy">
+            🏆
+        </div>
 
-        {{ percentage }}%
+        <h1>
+            Quiz Completed!
+        </h1>
+
+        <p>
+            Your final score
+        </p>
+
+        <div class="score">
+
+            {{ score }}/{{ total }}
+
+        </div>
+
+        <div class="percentage">
+
+            {{ percentage }}%
+
+        </div>
+
+        {% if percentage >= 80 %}
+
+        <h2>
+            Excellent! 🎉
+        </h2>
+
+        {% elif percentage >= 50 %}
+
+        <h2>
+            Good Job! 👍
+        </h2>
+
+        {% else %}
+
+        <h2>
+            Keep Practicing! 💪
+        </h2>
+
+        {% endif %}
+
+
+        <div class="result-buttons">
+
+            <a
+                href="{{ url_for('dashboard') }}"
+                class="btn primary"
+            >
+                Dashboard
+            </a>
+
+            <a
+                href="{{ url_for('history') }}"
+                class="btn secondary"
+            >
+                View History
+            </a>
+
+        </div>
 
     </div>
 
-    <h2>
-        {{ score }} / {{ total }}
-    </h2>
 
-    {% if percentage >= 80 %}
+    <!-- ANSWER REVIEW -->
 
-    <p class="success">
-        Excellent! Great performance.
-    </p>
+    {% if review %}
 
-    {% elif percentage >= 50 %}
+    <div class="review">
 
-    <p class="warning">
-        Good job! Keep practicing.
-    </p>
+        <h2>
+            Answer Review
+        </h2>
 
-    {% else %}
+        {% for item in review %}
 
-    <p class="danger">
-        Keep learning and try again.
-    </p>
+        <div
+            class="review-item
+            {% if item.correct %}
+                correct
+            {% else %}
+                wrong
+            {% endif %}"
+        >
+
+            <h3>
+                {{ loop.index }}.
+                {{ item.question }}
+            </h3>
+
+            <p>
+                Your answer:
+                <strong>
+                    {{ item.selected or "Not answered" }}
+                </strong>
+            </p>
+
+            {% if not item.correct %}
+
+            <p>
+                Correct answer:
+                <strong>
+                    {{ item.correct_answer }}
+                </strong>
+            </p>
+
+            {% endif %}
+
+        </div>
+
+        {% endfor %}
+
+    </div>
 
     {% endif %}
-
-    <h2>Answer Review</h2>
-
-    {% for item in review %}
-
-    <div class="review-card">
-
-        <h3>
-            {{ loop.index }}. {{ item.question }}
-        </h3>
-
-        <p>
-            Your Answer:
-            <strong>
-                {{ item.selected or "Not answered" }}
-            </strong>
-        </p>
-
-        <p>
-            Correct Answer:
-            <strong>
-                {{ item.correct_answer }}
-            </strong>
-        </p>
-
-    </div>
-
-    {% endfor %}
-
-    <a class="btn"
-       href="{{ url_for('dashboard') }}">
-        Try Another Quiz
-    </a>
 
 </div>
 

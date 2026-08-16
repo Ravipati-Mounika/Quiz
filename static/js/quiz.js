@@ -1,30 +1,34 @@
-let time = 5 * 60;
+let timeLeft = 300;
 
-const timer = document.getElementById("timer");
-
+const timerElement = document.getElementById("timer");
 const quizForm = document.getElementById("quizForm");
 
-const countdown = setInterval(function () {
+if (timerElement && quizForm) {
 
-    let minutes = Math.floor(time / 60);
-    let seconds = time % 60;
+    const timer = setInterval(function () {
 
-    seconds = seconds < 10
-        ? "0" + seconds
-        : seconds;
+        let minutes = Math.floor(timeLeft / 60);
+        let seconds = timeLeft % 60;
 
-    timer.innerHTML =
-        minutes + ":" + seconds;
+        seconds = seconds < 10
+            ? "0" + seconds
+            : seconds;
 
-    if (time <= 0) {
+        timerElement.textContent =
+            minutes + ":" + seconds;
 
-        clearInterval(countdown);
+        timeLeft--;
 
-        alert("Time is over!");
+        if (timeLeft < 0) {
 
-        quizForm.submit();
-    }
+            clearInterval(timer);
 
-    time--;
+            alert(
+                "Time is up! Your quiz will be submitted."
+            );
 
-}, 1000);
+            quizForm.submit();
+        }
+
+    }, 1000);
+}

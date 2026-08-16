@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
 
-    <title>QuizMaster</title>
+    <meta charset="UTF-8">
 
     <meta name="viewport"
-          content="width=device-width, initial-scale=1">
+          content="width=device-width, initial-scale=1.0">
+
+    <title>QuizMaster</title>
 
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css/style.css') }}">
@@ -14,7 +17,7 @@
 
 <body>
 
-<nav>
+<nav class="navbar">
 
     <div class="logo">
         QuizMaster
@@ -36,7 +39,8 @@
             History
         </a>
 
-        <a href="{{ url_for('logout') }}">
+        <a href="{{ url_for('logout') }}"
+           class="logout">
             Logout
         </a>
 
@@ -46,7 +50,8 @@
             Login
         </a>
 
-        <a href="{{ url_for('register') }}">
+        <a href="{{ url_for('register') }}"
+           class="register-link">
             Register
         </a>
 
@@ -56,24 +61,39 @@
 
 </nav>
 
+
 {% with messages = get_flashed_messages() %}
 
     {% if messages %}
 
-        {% for message in messages %}
+        <div class="flash-container">
 
-        <div class="alert">
-            {{ message }}
+            {% for message in messages %}
+
+                <div class="flash">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
         </div>
-
-        {% endfor %}
 
     {% endif %}
 
 {% endwith %}
 
-{% block content %}
-{% endblock %}
+
+<main>
+
+    {% block content %}
+
+    {% endblock %}
+
+</main>
+
+
+<script src="{{ url_for('static', filename='js/quiz.js') }}"></script>
 
 </body>
+
 </html>

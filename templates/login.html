@@ -2,38 +2,64 @@
 
 {% block content %}
 
-<div class="form-container">
+<div class="auth-container">
 
-    <h1>Login</h1>
+    <div class="auth-card">
 
-    <form method="POST">
+        <div class="auth-icon">
+            🔐
+        </div>
 
-        <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            required
-        >
+        <h1>
+            Welcome Back
+        </h1>
 
-        <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            required
-        >
+        <p>
+            Login to continue your quiz journey.
+        </p>
 
-        <button class="btn">
-            Login
-        </button>
+        <form method="POST">
 
-    </form>
+            <label>
+                Email
+            </label>
 
-    <p>
-        Don't have an account?
-        <a href="{{ url_for('register') }}">
-            Register
-        </a>
-    </p>
+            <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+            >
+
+            <label>
+                Password
+            </label>
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Enter your password"
+                required
+            >
+
+            <button type="submit"
+                    class="btn primary full">
+                Login
+            </button>
+
+        </form>
+
+        <p class="auth-bottom">
+
+            Don't have an account?
+
+            <a href="{{ url_for('register') }}">
+                Register
+            </a>
+
+        </p>
+
+    </div>
 
 </div>
 

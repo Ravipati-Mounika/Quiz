@@ -6,15 +6,29 @@
 
     <div class="quiz-header">
 
-        <h1>
-            {{ category }} Quiz
-        </h1>
+        <div>
 
-        <div id="timer">
-            05:00
+            <span>
+                Quiz
+            </span>
+
+            <h1>
+                {{ category }}
+            </h1>
+
+        </div>
+
+        <div class="timer">
+
+            ⏱️
+            <span id="timer">
+                05:00
+            </span>
+
         </div>
 
     </div>
+
 
     <form
         method="POST"
@@ -22,71 +36,106 @@
         id="quizForm"
     >
 
+        {% for question in questions %}
+
+        <div class="question-card">
+
+            <div class="question-number">
+
+                Question {{ loop.index }}
+
+            </div>
+
+            <h2>
+                {{ question.question }}
+            </h2>
+
+
+            <div class="options">
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="question_{{ question.id }}"
+                        value="{{ question.option1 }}"
+                        required
+                    >
+
+                    <span>
+                        {{ question.option1 }}
+                    </span>
+
+                </label>
+
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="question_{{ question.id }}"
+                        value="{{ question.option2 }}"
+                    >
+
+                    <span>
+                        {{ question.option2 }}
+                    </span>
+
+                </label>
+
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="question_{{ question.id }}"
+                        value="{{ question.option3 }}"
+                    >
+
+                    <span>
+                        {{ question.option3 }}
+                    </span>
+
+                </label>
+
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="question_{{ question.id }}"
+                        value="{{ question.option4 }}"
+                    >
+
+                    <span>
+                        {{ question.option4 }}
+                    </span>
+
+                </label>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+
         <input
             type="hidden"
             name="category"
             value="{{ category }}"
         >
 
-        {% for q in questions %}
 
-        <div class="question-card">
-
-            <h3>
-                {{ loop.index }}.
-                {{ q.question }}
-            </h3>
-
-            <label>
-                <input
-                    type="radio"
-                    name="question_{{ q.id }}"
-                    value="{{ q.option1 }}"
-                    required
-                >
-                {{ q.option1 }}
-            </label>
-
-            <label>
-                <input
-                    type="radio"
-                    name="question_{{ q.id }}"
-                    value="{{ q.option2 }}"
-                >
-                {{ q.option2 }}
-            </label>
-
-            <label>
-                <input
-                    type="radio"
-                    name="question_{{ q.id }}"
-                    value="{{ q.option3 }}"
-                >
-                {{ q.option3 }}
-            </label>
-
-            <label>
-                <input
-                    type="radio"
-                    name="question_{{ q.id }}"
-                    value="{{ q.option4 }}"
-                >
-                {{ q.option4 }}
-            </label>
-
-        </div>
-
-        {% endfor %}
-
-        <button class="submit-btn">
+        <button
+            type="submit"
+            class="btn primary submit-btn"
+        >
             Submit Quiz
         </button>
 
     </form>
 
 </div>
-
-<script src="{{ url_for('static', filename='js/quiz.js') }}">
-</script>
 
 {% endblock %}

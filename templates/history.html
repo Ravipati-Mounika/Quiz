@@ -2,52 +2,98 @@
 
 {% block content %}
 
-<div class="container">
+<div class="history-container">
 
-    <h1>Quiz History</h1>
+    <div class="page-heading">
+
+        <h1>
+            Quiz History
+        </h1>
+
+        <p>
+            View all your previous quiz attempts.
+        </p>
+
+    </div>
+
 
     {% if results %}
 
-    <table>
+    <div class="history-table">
 
-        <tr>
-            <th>Category</th>
-            <th>Score</th>
-            <th>Total</th>
-            <th>Percentage</th>
-        </tr>
+        <div class="history-row history-header">
+
+            <span>
+                #
+            </span>
+
+            <span>
+                Category
+            </span>
+
+            <span>
+                Score
+            </span>
+
+            <span>
+                Percentage
+            </span>
+
+        </div>
+
 
         {% for result in results %}
 
-        <tr>
+        <div class="history-row">
 
-            <td>
+            <span>
+                {{ loop.index }}
+            </span>
+
+            <strong>
                 {{ result.category }}
-            </td>
+            </strong>
 
-            <td>
-                {{ result.score }}
-            </td>
+            <span>
+                {{ result.score }}/{{ result.total }}
+            </span>
 
-            <td>
-                {{ result.total }}
-            </td>
+            <strong class="history-score">
 
-            <td>
                 {{ ((result.score / result.total) * 100)|round|int }}%
-            </td>
 
-        </tr>
+            </strong>
+
+        </div>
 
         {% endfor %}
 
-    </table>
+    </div>
 
     {% else %}
 
-    <p>
-        No quiz attempts yet.
-    </p>
+    <div class="empty">
+
+        <div>
+            📚
+        </div>
+
+        <h2>
+            No History Yet
+        </h2>
+
+        <p>
+            Complete a quiz to see your history.
+        </p>
+
+        <a
+            href="{{ url_for('dashboard') }}"
+            class="btn primary"
+        >
+            Start Quiz
+        </a>
+
+    </div>
 
     {% endif %}
 
