@@ -4,7 +4,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import os
 import random
 
-
 app = Flask(__name__)
 
 app.config["SECRET_KEY"] = "quizmaster-secret-key"
@@ -21,7 +20,7 @@ db = SQLAlchemy(app)
 
 
 # =====================================================
-# USER MODEL
+# USER
 # =====================================================
 
 class User(db.Model):
@@ -46,15 +45,12 @@ class User(db.Model):
 
 
 # =====================================================
-# QUESTION MODEL
+# QUESTION
 # =====================================================
 
 class Question(db.Model):
 
-    id = db.Column(
-        db.Integer,
-        primary_key=True
-    )
+    id = db.Column(db.Integer, primary_key=True)
 
     category = db.Column(
         db.String(100),
@@ -93,7 +89,7 @@ class Question(db.Model):
 
 
 # =====================================================
-# RESULT MODEL
+# RESULT
 # =====================================================
 
 class Result(db.Model):
@@ -130,7 +126,7 @@ class Result(db.Model):
 
 QUESTION_DATA = [
 
-    # ---------------- PYTHON ----------------
+    # PYTHON
 
     {
         "category": "Python",
@@ -144,7 +140,7 @@ QUESTION_DATA = [
 
     {
         "category": "Python",
-        "question": "Which data type is used to store True or False?",
+        "question": "Which data type stores True or False?",
         "option1": "int",
         "option2": "str",
         "option3": "bool",
@@ -154,7 +150,7 @@ QUESTION_DATA = [
 
     {
         "category": "Python",
-        "question": "Which symbol is used for comments in Python?",
+        "question": "Which symbol is used for comments?",
         "option1": "//",
         "option2": "#",
         "option3": "/*",
@@ -164,7 +160,7 @@ QUESTION_DATA = [
 
     {
         "category": "Python",
-        "question": "Which function is used to find the length of a list?",
+        "question": "Which function finds the length of a list?",
         "option1": "length()",
         "option2": "size()",
         "option3": "len()",
@@ -182,11 +178,12 @@ QUESTION_DATA = [
         "answer": "List"
     },
 
-    # ---------------- JAVA ----------------
+
+    # JAVA
 
     {
         "category": "Java",
-        "question": "Which keyword is used to create a class in Java?",
+        "question": "Which keyword is used to create a class?",
         "option1": "class",
         "option2": "Class",
         "option3": "create",
@@ -216,7 +213,7 @@ QUESTION_DATA = [
 
     {
         "category": "Java",
-        "question": "Which company originally developed Java?",
+        "question": "Who originally developed Java?",
         "option1": "Microsoft",
         "option2": "Sun Microsystems",
         "option3": "Apple",
@@ -234,7 +231,8 @@ QUESTION_DATA = [
         "answer": ";"
     },
 
-    # ---------------- C ----------------
+
+    # C
 
     {
         "category": "C",
@@ -248,7 +246,7 @@ QUESTION_DATA = [
 
     {
         "category": "C",
-        "question": "Which function is used to print output in C?",
+        "question": "Which function prints output in C?",
         "option1": "print()",
         "option2": "echo()",
         "option3": "printf()",
@@ -268,7 +266,7 @@ QUESTION_DATA = [
 
     {
         "category": "C",
-        "question": "Which operator is used to get the address of a variable?",
+        "question": "Which operator gets the address of a variable?",
         "option1": "*",
         "option2": "&",
         "option3": "#",
@@ -286,11 +284,12 @@ QUESTION_DATA = [
         "answer": "do-while"
     },
 
-    # ---------------- SQL ----------------
+
+    # SQL
 
     {
         "category": "SQL",
-        "question": "Which command is used to retrieve data?",
+        "question": "Which command retrieves data?",
         "option1": "GET",
         "option2": "SELECT",
         "option3": "FETCH",
@@ -300,7 +299,7 @@ QUESTION_DATA = [
 
     {
         "category": "SQL",
-        "question": "Which command is used to remove a table?",
+        "question": "Which command removes a table?",
         "option1": "DELETE",
         "option2": "REMOVE",
         "option3": "DROP",
@@ -310,7 +309,7 @@ QUESTION_DATA = [
 
     {
         "category": "SQL",
-        "question": "Which clause is used to filter records?",
+        "question": "Which clause filters records?",
         "option1": "WHERE",
         "option2": "FILTER",
         "option3": "HAVING",
@@ -320,7 +319,7 @@ QUESTION_DATA = [
 
     {
         "category": "SQL",
-        "question": "Which command adds new records?",
+        "question": "Which command adds records?",
         "option1": "ADD",
         "option2": "INSERT",
         "option3": "CREATE",
@@ -338,7 +337,8 @@ QUESTION_DATA = [
         "answer": "ORDER BY"
     },
 
-    # ---------------- DBMS ----------------
+
+    # DBMS
 
     {
         "category": "DBMS",
@@ -372,7 +372,7 @@ QUESTION_DATA = [
 
     {
         "category": "DBMS",
-        "question": "Which key creates a relationship between tables?",
+        "question": "Which key connects tables?",
         "option1": "Primary Key",
         "option2": "Foreign Key",
         "option3": "Super Key",
@@ -382,7 +382,7 @@ QUESTION_DATA = [
 
     {
         "category": "DBMS",
-        "question": "What is a collection of related data called?",
+        "question": "What is a collection of related data?",
         "option1": "Database",
         "option2": "Program",
         "option3": "Algorithm",
@@ -390,7 +390,8 @@ QUESTION_DATA = [
         "answer": "Database"
     },
 
-    # ---------------- DATA STRUCTURES ----------------
+
+    # DATA STRUCTURES
 
     {
         "category": "Data Structures",
@@ -414,7 +415,7 @@ QUESTION_DATA = [
 
     {
         "category": "Data Structures",
-        "question": "Which structure consists of nodes connected by edges?",
+        "question": "Which structure contains nodes connected by edges?",
         "option1": "Array",
         "option2": "Graph",
         "option3": "Stack",
@@ -424,7 +425,7 @@ QUESTION_DATA = [
 
     {
         "category": "Data Structures",
-        "question": "Which search works on a sorted array?",
+        "question": "Which search works on sorted data?",
         "option1": "Linear Search",
         "option2": "Binary Search",
         "option3": "Random Search",
@@ -434,15 +435,16 @@ QUESTION_DATA = [
 
     {
         "category": "Data Structures",
-        "question": "What is the root node of a tree?",
-        "option1": "The bottom node",
-        "option2": "The first/top node",
-        "option3": "The leaf node",
-        "option4": "The last node",
-        "answer": "The first/top node"
+        "question": "What is the top node of a tree called?",
+        "option1": "Leaf",
+        "option2": "Root",
+        "option3": "Child",
+        "option4": "Branch",
+        "answer": "Root"
     },
 
-    # ---------------- HTML/CSS ----------------
+
+    # HTML/CSS
 
     {
         "category": "HTML/CSS",
@@ -486,7 +488,7 @@ QUESTION_DATA = [
 
     {
         "category": "HTML/CSS",
-        "question": "Which HTML tag is used for the largest heading?",
+        "question": "Which tag creates the largest heading?",
         "option1": "<h6>",
         "option2": "<heading>",
         "option3": "<h1>",
@@ -497,14 +499,13 @@ QUESTION_DATA = [
 
 
 # =====================================================
-# CREATE DATABASE + INSERT QUESTIONS
+# INITIALIZE DATABASE
 # =====================================================
 
 def initialize_database():
 
     db.create_all()
 
-    # Add questions only if database has no questions
     if Question.query.count() == 0:
 
         for item in QUESTION_DATA:
@@ -523,10 +524,7 @@ def initialize_database():
 
         db.session.commit()
 
-        print("======================================")
-        print("QUESTIONS ADDED SUCCESSFULLY")
-        print("Total Questions:", Question.query.count())
-        print("======================================")
+        print("Questions added:", Question.query.count())
 
 
 with app.app_context():
@@ -547,7 +545,7 @@ def index():
 
 
 # =====================================================
-# REGISTER PAGE
+# REGISTER
 # =====================================================
 
 @app.route("/register")
@@ -555,10 +553,6 @@ def register():
 
     return render_template("register.html")
 
-
-# =====================================================
-# REGISTER API
-# =====================================================
 
 @app.route("/api/register", methods=["POST"])
 def api_register():
@@ -576,11 +570,11 @@ def api_register():
             "message": "All fields are required"
         })
 
-    existing = User.query.filter_by(
+    existing_user = User.query.filter_by(
         email=email
     ).first()
 
-    if existing:
+    if existing_user:
 
         return jsonify({
             "success": False,
@@ -604,7 +598,7 @@ def api_register():
 
 
 # =====================================================
-# LOGIN PAGE
+# LOGIN
 # =====================================================
 
 @app.route("/login")
@@ -612,10 +606,6 @@ def login():
 
     return render_template("login.html")
 
-
-# =====================================================
-# LOGIN API
-# =====================================================
 
 @app.route("/api/login", methods=["POST"])
 def api_login():
@@ -663,7 +653,6 @@ def api_login():
 def dashboard():
 
     if "user_id" not in session:
-
         return redirect(url_for("login"))
 
     user = db.session.get(
@@ -687,39 +676,27 @@ def dashboard():
 
             if result.total > 0:
 
-                percentage = (
-                    result.score /
-                    result.total
-                ) * 100
-
                 percentages.append(
-                    percentage
+                    (result.score / result.total) * 100
                 )
 
-        if percentages:
+        average_score = round(
+            sum(percentages) / len(percentages)
+        )
 
-            average_score = round(
-                sum(percentages) /
-                len(percentages)
-            )
-
-            best_score = round(
-                max(percentages)
-            )
-
-        else:
-
-            average_score = 0
-            best_score = 0
+        best_score = round(
+            max(percentages)
+        )
 
     else:
 
         average_score = 0
         best_score = 0
 
-    # ==============================================
-    # GET ALL QUIZ CATEGORIES
-    # ==============================================
+
+    # ==========================================
+    # GET QUIZ CATEGORIES
+    # ==========================================
 
     categories = db.session.query(
         Question.category
@@ -732,9 +709,8 @@ def dashboard():
         for category in categories
     ]
 
-    print("QUIZ CATEGORIES:", categories)
+    print("AVAILABLE QUIZZES:", categories)
 
-    recent_results = results[:5]
 
     return render_template(
         "dashboard.html",
@@ -743,36 +719,46 @@ def dashboard():
         quizzes_taken=quizzes_taken,
         average_score=average_score,
         best_score=best_score,
-        recent_results=recent_results
+        recent_results=results[:5]
     )
 
 
 # =====================================================
-# QUIZ PAGE
+# QUIZ
+# IMPORTANT: <path:category> SUPPORTS HTML/CSS
 # =====================================================
 
-@app.route("/quiz/<category>")
+@app.route("/quiz/<path:category>")
 def quiz(category):
 
     if "user_id" not in session:
 
         return redirect(url_for("login"))
 
+
+    print("QUIZ REQUESTED:", category)
+
+
     questions = Question.query.filter_by(
         category=category
     ).all()
 
+
     if not questions:
 
-        return """
-        <h2>No questions found.</h2>
-        <a href="/dashboard">Back to Dashboard</a>
+        return f"""
+        <h2>No questions found for: {category}</h2>
+
+        <a href="/dashboard">
+            Back to Dashboard
+        </a>
         """
+
 
     random.shuffle(questions)
 
-    # Maximum 5 questions per quiz
     questions = questions[:5]
+
 
     return render_template(
         "quiz.html",
@@ -792,19 +778,24 @@ def submit_quiz():
 
         return redirect(url_for("login"))
 
+
     category = request.form.get(
         "category"
     )
+
 
     questions = Question.query.filter_by(
         category=category
     ).all()
 
+
     questions = questions[:5]
+
 
     score = 0
 
     review = []
+
 
     for question in questions:
 
@@ -812,13 +803,15 @@ def submit_quiz():
             "question_" + str(question.id)
         )
 
+
         correct = (
             selected == question.answer
         )
 
-        if correct:
 
+        if correct:
             score += 1
+
 
         review.append({
             "question": question.question,
@@ -827,7 +820,9 @@ def submit_quiz():
             "correct": correct
         })
 
+
     total = len(questions)
+
 
     result = Result(
         user_id=session["user_id"],
@@ -836,9 +831,11 @@ def submit_quiz():
         total=total
     )
 
+
     db.session.add(result)
 
     db.session.commit()
+
 
     percentage = 0
 
@@ -847,6 +844,7 @@ def submit_quiz():
         percentage = round(
             (score / total) * 100
         )
+
 
     return render_template(
         "result.html",
@@ -869,11 +867,13 @@ def history():
 
         return redirect(url_for("login"))
 
+
     results = Result.query.filter_by(
         user_id=session["user_id"]
     ).order_by(
         Result.id.desc()
     ).all()
+
 
     return render_template(
         "history.html",
@@ -896,7 +896,7 @@ def logout():
 
 
 # =====================================================
-# RUN
+# START SERVER
 # =====================================================
 
 if __name__ == "__main__":
