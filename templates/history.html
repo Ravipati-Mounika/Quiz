@@ -2,98 +2,58 @@
 
 {% block content %}
 
-<div class="history-container">
+<div class="container">
 
-    <div class="page-heading">
+    <h1>Quiz History</h1>
 
-        <h1>
-            Quiz History
-        </h1>
+    {% if history %}
 
-        <p>
-            View all your previous quiz attempts.
-        </p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Score</th>
+                    <th>Total</th>
+                    <th>Percentage</th>
+                </tr>
+            </thead>
 
-    </div>
+            <tbody>
 
+                {% for item in history %}
 
-    {% if results %}
+                <tr>
 
-    <div class="history-table">
+                    <td>
+                        {{ item["category"] }}
+                    </td>
 
-        <div class="history-row history-header">
+                    <td>
+                        {{ item["score"] }}
+                    </td>
 
-            <span>
-                #
-            </span>
+                    <td>
+                        {{ item["total"] }}
+                    </td>
 
-            <span>
-                Category
-            </span>
+                    <td>
+                        {% if item["total"] > 0 %}
+                            {{ ((item["score"] / item["total"]) * 100)|round(1) }}%
+                        {% else %}
+                            0%
+                        {% endif %}
+                    </td>
 
-            <span>
-                Score
-            </span>
+                </tr>
 
-            <span>
-                Percentage
-            </span>
+                {% endfor %}
 
-        </div>
-
-
-        {% for result in results %}
-
-        <div class="history-row">
-
-            <span>
-                {{ loop.index }}
-            </span>
-
-            <strong>
-                {{ result.category }}
-            </strong>
-
-            <span>
-                {{ result.score }}/{{ result.total }}
-            </span>
-
-            <strong class="history-score">
-
-                {{ ((result.score / result.total) * 100)|round|int }}%
-
-            </strong>
-
-        </div>
-
-        {% endfor %}
-
-    </div>
+            </tbody>
+        </table>
 
     {% else %}
 
-    <div class="empty">
-
-        <div>
-            📚
-        </div>
-
-        <h2>
-            No History Yet
-        </h2>
-
-        <p>
-            Complete a quiz to see your history.
-        </p>
-
-        <a
-            href="{{ url_for('dashboard') }}"
-            class="btn primary"
-        >
-            Start Quiz
-        </a>
-
-    </div>
+        <p>You haven't completed any quizzes yet.</p>
 
     {% endif %}
 

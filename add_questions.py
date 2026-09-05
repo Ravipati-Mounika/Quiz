@@ -1,800 +1,1247 @@
 from app import app, db, Question
+import sqlite3
+import os
 
+
+# ============================================================
+# DATABASE LOCATION
+# ============================================================
+
+BASE_DIR = os.path.dirname(
+    os.path.abspath(__file__)
+)
+
+DB_PATH = os.path.join(
+    BASE_DIR,
+    "quiz.db"
+)
+
+
+# ============================================================
+# 100 PROGRAMMING QUESTIONS
+# ============================================================
 
 questions = [
 
-# =====================
-# PYTHON
-# =====================
-
-Question(
-    category="Python",
-    question="Which keyword is used to create a function?",
-    option1="function",
-    option2="def",
-    option3="fun",
-    option4="define",
-    answer="def"
-),
-
-Question(
-    category="Python",
-    question="Which function prints output?",
-    option1="print()",
-    option2="output()",
-    option3="display()",
-    option4="show()",
-    answer="print()"
-),
-
-Question(
-    category="Python",
-    question="Which data type stores multiple values?",
-    option1="int",
-    option2="float",
-    option3="list",
-    option4="bool",
-    answer="list"
-),
-
-Question(
-    category="Python",
-    question="Which keyword is used for a loop?",
-    option1="repeat",
-    option2="for",
-    option3="loop",
-    option4="iterate",
-    answer="for"
-),
-
-Question(
-    category="Python",
-    question="Which symbol is used for comments?",
-    option1="//",
-    option2="#",
-    option3="/*",
-    option4="--",
-    answer="#"
-),
-
-Question(
-    category="Python",
-    question="What is the output type of input()?",
-    option1="Integer",
-    option2="Float",
-    option3="String",
-    option4="Boolean",
-    answer="String"
-),
-
-Question(
-    category="Python",
-    question="Which keyword creates a class?",
-    option1="class",
-    option2="Class",
-    option3="object",
-    option4="struct",
-    answer="class"
-),
-
-Question(
-    category="Python",
-    question="Which collection does not allow duplicate values?",
-    option1="List",
-    option2="Tuple",
-    option3="Set",
-    option4="String",
-    answer="Set"
-),
-
-Question(
-    category="Python",
-    question="Which function returns the length?",
-    option1="size()",
-    option2="length()",
-    option3="len()",
-    option4="count()",
-    answer="len()"
-),
-
-Question(
-    category="Python",
-    question="What is the extension of Python files?",
-    option1=".java",
-    option2=".py",
-    option3=".python",
-    option4=".pt",
-    answer=".py"
-),
-
-
-# =====================
-# JAVA
-# =====================
-
-Question(
-    category="Java",
-    question="Which keyword creates an object?",
-    option1="create",
-    option2="object",
-    option3="new",
-    option4="make",
-    answer="new"
-),
-
-Question(
-    category="Java",
-    question="Which method is the entry point?",
-    option1="start()",
-    option2="main()",
-    option3="run()",
-    option4="execute()",
-    answer="main()"
-),
-
-Question(
-    category="Java",
-    question="Which keyword is used for inheritance?",
-    option1="inherit",
-    option2="extends",
-    option3="implements",
-    option4="super",
-    answer="extends"
-),
-
-Question(
-    category="Java",
-    question="Which keyword prevents inheritance?",
-    option1="static",
-    option2="private",
-    option3="final",
-    option4="constant",
-    answer="final"
-),
-
-Question(
-    category="Java",
-    question="Which type stores true or false?",
-    option1="int",
-    option2="boolean",
-    option3="char",
-    option4="String",
-    answer="boolean"
-),
-
-Question(
-    category="Java",
-    question="Which concept means hiding implementation details?",
-    option1="Inheritance",
-    option2="Polymorphism",
-    option3="Abstraction",
-    option4="Compilation",
-    answer="Abstraction"
-),
-
-Question(
-    category="Java",
-    question="Which keyword refers to the current object?",
-    option1="self",
-    option2="this",
-    option3="current",
-    option4="object",
-    answer="this"
-),
-
-Question(
-    category="Java",
-    question="Which package contains Scanner?",
-    option1="java.io",
-    option2="java.util",
-    option3="java.lang",
-    option4="java.sql",
-    answer="java.util"
-),
-
-Question(
-    category="Java",
-    question="Which concept allows method overloading?",
-    option1="Polymorphism",
-    option2="Inheritance",
-    option3="Abstraction",
-    option4="Encapsulation",
-    answer="Polymorphism"
-),
-
-Question(
-    category="Java",
-    question="Which keyword handles exceptions?",
-    option1="try",
-    option2="test",
-    option3="error",
-    option4="check",
-    answer="try"
-),
-
-
-# =====================
-# SQL
-# =====================
-
-Question(
-    category="SQL",
-    question="Which command retrieves data?",
-    option1="INSERT",
-    option2="SELECT",
-    option3="UPDATE",
-    option4="DELETE",
-    answer="SELECT"
-),
-
-Question(
-    category="SQL",
-    question="Which command adds a new row?",
-    option1="ADD",
-    option2="INSERT",
-    option3="CREATE",
-    option4="PUT",
-    answer="INSERT"
-),
-
-Question(
-    category="SQL",
-    question="Which command modifies existing data?",
-    option1="CHANGE",
-    option2="UPDATE",
-    option3="MODIFY",
-    option4="ALTER",
-    answer="UPDATE"
-),
-
-Question(
-    category="SQL",
-    question="Which command removes rows?",
-    option1="REMOVE",
-    option2="DELETE",
-    option3="DROP",
-    option4="CLEAR",
-    answer="DELETE"
-),
-
-Question(
-    category="SQL",
-    question="Which key uniquely identifies a row?",
-    option1="Foreign Key",
-    option2="Primary Key",
-    option3="Secondary Key",
-    option4="Candidate Key",
-    answer="Primary Key"
-),
-
-Question(
-    category="SQL",
-    question="Which clause filters rows?",
-    option1="WHERE",
-    option2="FILTER",
-    option3="HAVING",
-    option4="CHECK",
-    answer="WHERE"
-),
-
-Question(
-    category="SQL",
-    question="Which function counts rows?",
-    option1="SUM()",
-    option2="COUNT()",
-    option3="TOTAL()",
-    option4="NUMBER()",
-    answer="COUNT()"
-),
-
-Question(
-    category="SQL",
-    question="Which command removes a table?",
-    option1="DELETE",
-    option2="REMOVE",
-    option3="DROP",
-    option4="CLEAR",
-    answer="DROP"
-),
-
-Question(
-    category="SQL",
-    question="Which clause sorts data?",
-    option1="SORT BY",
-    option2="ORDER BY",
-    option3="GROUP BY",
-    option4="ARRANGE BY",
-    answer="ORDER BY"
-),
-
-Question(
-    category="SQL",
-    question="Which keyword removes duplicate results?",
-    option1="UNIQUE",
-    option2="DISTINCT",
-    option3="DIFFERENT",
-    option4="FILTER",
-    answer="DISTINCT"
-),
-
-
-# =====================
-# C PROGRAMMING
-# =====================
-
-Question(
-    category="C",
-    question="Who developed C language?",
-    option1="James Gosling",
-    option2="Dennis Ritchie",
-    option3="Bjarne Stroustrup",
-    option4="Guido van Rossum",
-    answer="Dennis Ritchie"
-),
-
-Question(
-    category="C",
-    question="Which function is the starting point?",
-    option1="start()",
-    option2="main()",
-    option3="begin()",
-    option4="run()",
-    answer="main()"
-),
-
-Question(
-    category="C",
-    question="Which symbol ends a statement?",
-    option1=":",
-    option2=".",
-    option3=";",
-    option4=",",
-    answer=";"
-),
-
-Question(
-    category="C",
-    question="Which header is used for printf()?",
-    option1="stdlib.h",
-    option2="stdio.h",
-    option3="string.h",
-    option4="math.h",
-    answer="stdio.h"
-),
-
-Question(
-    category="C",
-    question="Which operator gets the address?",
-    option1="*",
-    option2="&",
-    option3="#",
-    option4="%",
-    answer="&"
-),
-
-Question(
-    category="C",
-    question="Which data type stores a character?",
-    option1="char",
-    option2="string",
-    option3="character",
-    option4="text",
-    answer="char"
-),
-
-Question(
-    category="C",
-    question="Which loop executes at least once?",
-    option1="for",
-    option2="while",
-    option3="do-while",
-    option4="foreach",
-    answer="do-while"
-),
-
-Question(
-    category="C",
-    question="Which keyword returns a value?",
-    option1="return",
-    option2="send",
-    option3="result",
-    option4="output",
-    answer="return"
-),
-
-
-# =====================
-# DATA STRUCTURES
-# =====================
-
-Question(
-    category="Data Structures",
-    question="Which data structure follows LIFO?",
-    option1="Queue",
-    option2="Stack",
-    option3="Array",
-    option4="Tree",
-    answer="Stack"
-),
-
-Question(
-    category="Data Structures",
-    question="Which data structure follows FIFO?",
-    option1="Stack",
-    option2="Queue",
-    option3="Tree",
-    option4="Graph",
-    answer="Queue"
-),
-
-Question(
-    category="Data Structures",
-    question="Which structure consists of nodes and edges?",
-    option1="Array",
-    option2="Stack",
-    option3="Graph",
-    option4="Queue",
-    answer="Graph"
-),
-
-Question(
-    category="Data Structures",
-    question="Which search works on sorted data?",
-    option1="Linear Search",
-    option2="Binary Search",
-    option3="Random Search",
-    option4="Sequential Search",
-    answer="Binary Search"
-),
-
-Question(
-    category="Data Structures",
-    question="What is the root node of a tree?",
-    option1="Last node",
-    option2="First/top node",
-    option3="Leaf node",
-    option4="Middle node",
-    answer="First/top node"
-),
-
-Question(
-    category="Data Structures",
-    question="Which structure uses nodes connected by links?",
-    option1="Linked List",
-    option2="Array",
-    option3="Matrix",
-    option4="Hash",
-    answer="Linked List"
-),
-
-
-# =====================
-# DBMS
-# =====================
-
-Question(
-    category="DBMS",
-    question="What does DBMS stand for?",
-    option1="Database Management System",
-    option2="Data Backup Management System",
-    option3="Database Machine System",
-    option4="Data Management Software",
-    answer="Database Management System"
-),
-
-Question(
-    category="DBMS",
-    question="Which is a database model?",
-    option1="Relational",
-    option2="Circular",
-    option3="Linear",
-    option4="Sequential",
-    answer="Relational"
-),
-
-Question(
-    category="DBMS",
-    question="What is a collection of related data?",
-    option1="Database",
-    option2="Program",
-    option3="Algorithm",
-    option4="File",
-    answer="Database"
-),
-
-Question(
-    category="DBMS",
-    question="Which key links two tables?",
-    option1="Primary Key",
-    option2="Foreign Key",
-    option3="Unique Key",
-    option4="Super Key",
-    answer="Foreign Key"
-),
-
-Question(
-    category="DBMS",
-    question="Which normal form removes repeating groups?",
-    option1="1NF",
-    option2="2NF",
-    option3="3NF",
-    option4="BCNF",
-    answer="1NF"
-),
-
-
-# =====================
-# HTML/CSS
-# =====================
-
-Question(
-    category="HTML/CSS",
-    question="What does HTML stand for?",
-    option1="Hyper Text Markup Language",
-    option2="High Text Machine Language",
-    option3="Hyperlink Text Management Language",
-    option4="Home Tool Markup Language",
-    answer="Hyper Text Markup Language"
-),
-
-Question(
-    category="HTML/CSS",
-    question="Which tag creates a hyperlink?",
-    option1="<link>",
-    option2="<a>",
-    option3="<href>",
-    option4="<url>",
-    answer="<a>"
-),
-
-Question(
-    category="HTML/CSS",
-    question="Which tag creates a paragraph?",
-    option1="<para>",
-    option2="<p>",
-    option3="<paragraph>",
-    option4="<text>",
-    answer="<p>"
-),
-
-Question(
-    category="HTML/CSS",
-    question="Which language styles web pages?",
-    option1="HTML",
-    option2="CSS",
-    option3="SQL",
-    option4="Python",
-    answer="CSS"
-),
-
-Question(
-    category="HTML/CSS",
-    question="Which CSS property changes text color?",
-    option1="font",
-    option2="text-color",
-    option3="color",
-    option4="foreground",
-    answer="color"
-),
-Question(
-    category="Python",
-    question="Which keyword is used to define a function?",
-    option1="function",
-    option2="def",
-    option3="define",
-    option4="fun",
-    answer="def"
-),
-
-Question(
-    category="Python",
-    question="Which data structure stores unique values?",
-    option1="List",
-    option2="Tuple",
-    option3="Set",
-    option4="Dictionary",
-    answer="Set"
-),
-
-Question(
-    category="Python",
-    question="Which function returns the length of an object?",
-    option1="size()",
-    option2="length()",
-    option3="len()",
-    option4="count()",
-    answer="len()"
-),
-
-Question(
-    category="Java",
-    question="Which keyword is used to create an object?",
-    option1="object",
-    option2="create",
-    option3="new",
-    option4="make",
-    answer="new"
-),
-
-Question(
-    category="Java",
-    question="Which method is the entry point of a Java program?",
-    option1="start()",
-    option2="main()",
-    option3="run()",
-    option4="execute()",
-    answer="main()"
-),
-
-Question(
-    category="Java",
-    question="Which keyword is used for inheritance?",
-    option1="inherit",
-    option2="extends",
-    option3="implements",
-    option4="inherits",
-    answer="extends"
-),
-
-Question(
-    category="SQL",
-    question="Which command is used to retrieve data?",
-    option1="INSERT",
-    option2="UPDATE",
-    option3="SELECT",
-    option4="DELETE",
-    answer="SELECT"
-),
-
-Question(
-    category="SQL",
-    question="Which clause is used to filter records?",
-    option1="ORDER BY",
-    option2="WHERE",
-    option3="GROUP BY",
-    option4="SORT",
-    answer="WHERE"
-),
-
-Question(
-    category="SQL",
-    question="Which key uniquely identifies a record?",
-    option1="Foreign Key",
-    option2="Primary Key",
-    option3="Candidate Key",
-    option4="Secondary Key",
-    answer="Primary Key"
-),
-
-Question(
-    category="C",
-    question="Who developed the C language?",
-    option1="James Gosling",
-    option2="Dennis Ritchie",
-    option3="Guido van Rossum",
-    option4="Bjarne Stroustrup",
-    answer="Dennis Ritchie"
-),
-
-Question(
-    category="C",
-    question="Which header file contains printf()?",
-    option1="stdlib.h",
-    option2="stdio.h",
-    option3="string.h",
-    option4="math.h",
-    answer="stdio.h"
-),
-
-Question(
-    category="C",
-    question="Which loop executes at least once?",
-    option1="for",
-    option2="while",
-    option3="do-while",
-    option4="foreach",
-    answer="do-while"
-),
-
-Question(
-    category="Data Structures",
-    question="Which data structure follows LIFO?",
-    option1="Queue",
-    option2="Stack",
-    option3="Tree",
-    option4="Graph",
-    answer="Stack"
-),
-
-Question(
-    category="Data Structures",
-    question="Which data structure follows FIFO?",
-    option1="Stack",
-    option2="Queue",
-    option3="Tree",
-    option4="Array",
-    answer="Queue"
-),
-
-Question(
-    category="Data Structures",
-    question="Which search algorithm requires sorted data?",
-    option1="Linear Search",
-    option2="Binary Search",
-    option3="Sequential Search",
-    option4="Random Search",
-    answer="Binary Search"
-),
-
-Question(
-    category="DBMS",
-    question="What does DBMS stand for?",
-    option1="Database Management System",
-    option2="Data Backup Management System",
-    option3="Database Machine System",
-    option4="Data Management Software",
-    answer="Database Management System"
-),
-
-Question(
-    category="DBMS",
-    question="Which key connects two tables?",
-    option1="Primary Key",
-    option2="Foreign Key",
-    option3="Super Key",
-    option4="Unique Key",
-    answer="Foreign Key"
-),
-
-Question(
-    category="DBMS",
-    question="Which normal form removes repeating groups?",
-    option1="1NF",
-    option2="2NF",
-    option3="3NF",
-    option4="BCNF",
-    answer="1NF"
-),
-
-Question(
-    category="HTML/CSS",
-    question="Which language is used to style web pages?",
-    option1="HTML",
-    option2="CSS",
-    option3="SQL",
-    option4="Python",
-    answer="CSS"
-),
-
-Question(
-    category="HTML/CSS",
-    question="Which HTML tag creates a hyperlink?",
-    option1="<link>",
-    option2="<a>",
-    option3="<href>",
-    option4="<url>",
-    answer="<a>"
-),
-
-Question(
-    category="HTML/CSS",
-    question="Which CSS property changes text color?",
-    option1="font",
-    option2="text-color",
-    option3="color",
-    option4="foreground",
-    answer="color"
-)
-
+    # ========================================================
+    # PYTHON - 10 QUESTIONS
+    # ========================================================
+
+    (
+        "Python",
+        "Which keyword is used to define a function in Python?",
+        "function",
+        "def",
+        "define",
+        "fun",
+        "def"
+    ),
+
+    (
+        "Python",
+        "Which function is used to display output in Python?",
+        "echo()",
+        "display()",
+        "print()",
+        "output()",
+        "print()"
+    ),
+
+    (
+        "Python",
+        "Which symbol is used for a single-line comment?",
+        "//",
+        "#",
+        "/*",
+        "--",
+        "#"
+    ),
+
+    (
+        "Python",
+        "Which data type stores True or False?",
+        "String",
+        "Integer",
+        "Boolean",
+        "Float",
+        "Boolean"
+    ),
+
+    (
+        "Python",
+        "Which collection is ordered and mutable?",
+        "Tuple",
+        "Set",
+        "List",
+        "FrozenSet",
+        "List"
+    ),
+
+    (
+        "Python",
+        "Which operator is used for exponentiation?",
+        "^",
+        "**",
+        "//",
+        "%%",
+        "**"
+    ),
+
+    (
+        "Python",
+        "Which function returns the length of a list?",
+        "size()",
+        "length()",
+        "len()",
+        "count()",
+        "len()"
+    ),
+
+    (
+        "Python",
+        "Which keyword is used to create a class?",
+        "object",
+        "class",
+        "struct",
+        "new",
+        "class"
+    ),
+
+    (
+        "Python",
+        "Which value represents no value in Python?",
+        "null",
+        "undefined",
+        "None",
+        "empty",
+        "None"
+    ),
+
+    (
+        "Python",
+        "Which file extension is used for Python programs?",
+        ".python",
+        ".pt",
+        ".py",
+        ".p",
+        ".py"
+    ),
+
+
+    # ========================================================
+    # JAVA - 10 QUESTIONS
+    # ========================================================
+
+    (
+        "Java",
+        "Which keyword is used to define a class in Java?",
+        "class",
+        "struct",
+        "define",
+        "object",
+        "class"
+    ),
+
+    (
+        "Java",
+        "Which method is the entry point of a Java application?",
+        "start()",
+        "main()",
+        "run()",
+        "execute()",
+        "main()"
+    ),
+
+    (
+        "Java",
+        "Which keyword creates an object?",
+        "create",
+        "object",
+        "new",
+        "make",
+        "new"
+    ),
+
+    (
+        "Java",
+        "Which data type stores whole numbers?",
+        "float",
+        "String",
+        "int",
+        "boolean",
+        "int"
+    ),
+
+    (
+        "Java",
+        "Which keyword is used for inheritance?",
+        "inherits",
+        "extends",
+        "implements",
+        "super",
+        "extends"
+    ),
+
+    (
+        "Java",
+        "Which keyword is used when a class implements an interface?",
+        "extends",
+        "inherits",
+        "implements",
+        "interface",
+        "implements"
+    ),
+
+    (
+        "Java",
+        "Which keyword prevents a variable from being changed?",
+        "constant",
+        "final",
+        "static",
+        "fixed",
+        "final"
+    ),
+
+    (
+        "Java",
+        "Which type is used to store text?",
+        "Text",
+        "String",
+        "char[]",
+        "text",
+        "String"
+    ),
+
+    (
+        "Java",
+        "Which symbol ends most Java statements?",
+        ".",
+        ":",
+        ";",
+        ",",
+        ";"
+    ),
+
+    (
+        "Java",
+        "Java source files normally use which extension?",
+        ".java",
+        ".jav",
+        ".class",
+        ".j",
+        ".java"
+    ),
+
+
+    # ========================================================
+    # C - 10 QUESTIONS
+    # ========================================================
+
+    (
+        "C",
+        "Which function is commonly used to print output in C?",
+        "print()",
+        "printf()",
+        "display()",
+        "cout",
+        "printf()"
+    ),
+
+    (
+        "C",
+        "Which function is used to read formatted input?",
+        "input()",
+        "scanf()",
+        "read()",
+        "cin",
+        "scanf()"
+    ),
+
+    (
+        "C",
+        "Which header file is required for printf()?",
+        "<stdlib.h>",
+        "<stdio.h>",
+        "<string.h>",
+        "<math.h>",
+        "<stdio.h>"
+    ),
+
+    (
+        "C",
+        "Which symbol is used to end a C statement?",
+        ":",
+        ".",
+        ";",
+        ",",
+        ";"
+    ),
+
+    (
+        "C",
+        "Which data type stores a single character?",
+        "string",
+        "char",
+        "character",
+        "text",
+        "char"
+    ),
+
+    (
+        "C",
+        "Which operator is used to get the address of a variable?",
+        "*",
+        "&",
+        "#",
+        "@",
+        "&"
+    ),
+
+    (
+        "C",
+        "Which operator is used to dereference a pointer?",
+        "&",
+        "*",
+        "#",
+        "%",
+        "*"
+    ),
+
+    (
+        "C",
+        "Which keyword is used to define a constant variable?",
+        "constant",
+        "const",
+        "fixed",
+        "final",
+        "const"
+    ),
+
+    (
+        "C",
+        "Which loop executes while a condition is true?",
+        "repeat",
+        "while",
+        "loop",
+        "foreach",
+        "while"
+    ),
+
+    (
+        "C",
+        "Which extension is commonly used for C source files?",
+        ".cpp",
+        ".c",
+        ".h",
+        ".cc",
+        ".c"
+    ),
+
+
+    # ========================================================
+    # C++ - 10 QUESTIONS
+    # ========================================================
+
+    (
+        "C++",
+        "Which object is commonly used for output in C++?",
+        "printf",
+        "cout",
+        "output",
+        "print",
+        "cout"
+    ),
+
+    (
+        "C++",
+        "Which object is commonly used for input in C++?",
+        "scanf",
+        "cin",
+        "input",
+        "read",
+        "cin"
+    ),
+
+    (
+        "C++",
+        "Which header provides cout and cin?",
+        "<stdio.h>",
+        "<iostream>",
+        "<string.h>",
+        "<input.h>",
+        "<iostream>"
+    ),
+
+    (
+        "C++",
+        "Which keyword is used to create a class?",
+        "object",
+        "class",
+        "struct",
+        "define",
+        "class"
+    ),
+
+    (
+        "C++",
+        "Which feature allows the same function name with different parameters?",
+        "Inheritance",
+        "Encapsulation",
+        "Function overloading",
+        "Abstraction",
+        "Function overloading"
+    ),
+
+    (
+        "C++",
+        "Which operator is used with cout?",
+        ">>",
+        "<<",
+        "=>",
+        "::",
+        "<<"
+    ),
+
+    (
+        "C++",
+        "Which operator is used with cin?",
+        "<<",
+        ">>",
+        "::",
+        "==",
+        ">>"
+    ),
+
+    (
+        "C++",
+        "Which keyword is used for inheritance?",
+        "extends",
+        "inherits",
+        ":",
+        "implements",
+        ":"
+    ),
+
+    (
+        "C++",
+        "Which extension is commonly used for C++ source files?",
+        ".c",
+        ".java",
+        ".cpp",
+        ".py",
+        ".cpp"
+    ),
+
+    (
+        "C++",
+        "Which feature allows a class to have multiple constructors?",
+        "Constructor overloading",
+        "Inheritance",
+        "Pointers",
+        "Templates",
+        "Constructor overloading"
+    ),
+
+
+    # ========================================================
+    # JAVASCRIPT - 10 QUESTIONS
+    # ========================================================
+
+    (
+        "JavaScript",
+        "Which keyword declares a block-scoped variable that can be reassigned?",
+        "const",
+        "let",
+        "fixed",
+        "define",
+        "let"
+    ),
+
+    (
+        "JavaScript",
+        "Which keyword declares a constant?",
+        "var",
+        "let",
+        "const",
+        "constant",
+        "const"
+    ),
+
+    (
+        "JavaScript",
+        "Which function prints a message to the browser console?",
+        "print()",
+        "console.log()",
+        "console.print()",
+        "log()",
+        "console.log()"
+    ),
+
+    (
+        "JavaScript",
+        "Which operator checks strict equality?",
+        "=",
+        "==",
+        "===",
+        "!=",
+        "==="
+    ),
+
+    (
+        "JavaScript",
+        "Which method adds an element to the end of an array?",
+        "add()",
+        "append()",
+        "push()",
+        "insert()",
+        "push()"
+    ),
+
+    (
+        "JavaScript",
+        "Which method removes the last element from an array?",
+        "remove()",
+        "pop()",
+        "delete()",
+        "last()",
+        "pop()"
+    ),
+
+    (
+        "JavaScript",
+        "Which keyword is used to define a function?",
+        "def",
+        "function",
+        "func",
+        "method",
+        "function"
+    ),
+
+    (
+        "JavaScript",
+        "Which object represents the current web page?",
+        "browser",
+        "document",
+        "page",
+        "html",
+        "document"
+    ),
+
+    (
+        "JavaScript",
+        "Which method converts JSON text into an object?",
+        "JSON.convert()",
+        "JSON.parse()",
+        "JSON.object()",
+        "JSON.read()",
+        "JSON.parse()"
+    ),
+
+    (
+        "JavaScript",
+        "Which symbol starts a single-line comment?",
+        "#",
+        "//",
+        "<!--",
+        "/*",
+        "//"
+    ),
+
+
+    # ========================================================
+    # REACT JS - 10 QUESTIONS
+    # ========================================================
+
+    (
+        "React JS",
+        "Who originally developed React?",
+        "Google",
+        "Facebook",
+        "Microsoft",
+        "Apple",
+        "Facebook"
+    ),
+
+    (
+        "React JS",
+        "What is React primarily used for?",
+        "Database management",
+        "Building user interfaces",
+        "Operating systems",
+        "File compression",
+        "Building user interfaces"
+    ),
+
+    (
+        "React JS",
+        "Which syntax is commonly used to write HTML-like elements in React?",
+        "XML",
+        "JSX",
+        "JQuery",
+        "TSXOnly",
+        "JSX"
+    ),
+
+    (
+        "React JS",
+        "Which hook is used to manage state in a functional component?",
+        "useEffect",
+        "useState",
+        "useData",
+        "useValue",
+        "useState"
+    ),
+
+    (
+        "React JS",
+        "Which hook is commonly used for side effects?",
+        "useState",
+        "useEffect",
+        "useSideEffect",
+        "useAction",
+        "useEffect"
+    ),
+
+    (
+        "React JS",
+        "What does JSX stand for?",
+        "JavaScript XML",
+        "Java Syntax Extension",
+        "JavaScript Extension",
+        "JSON XML",
+        "JavaScript XML"
+    ),
+
+    (
+        "React JS",
+        "What is used to pass data from a parent component to a child?",
+        "State",
+        "Props",
+        "Hooks",
+        "Events",
+        "Props"
+    ),
+
+    (
+        "React JS",
+        "Which command commonly creates a React project using Vite?",
+        "npm create vite@latest",
+        "npm install react-project",
+        "react new",
+        "create-react",
+        "npm create vite@latest"
+    ),
+
+    (
+        "React JS",
+        "What should be used for a unique key when rendering a list?",
+        "A unique identifier",
+        "The array color",
+        "The component name",
+        "The CSS class",
+        "A unique identifier"
+    ),
+
+    (
+        "React JS",
+        "React components are commonly written as what?",
+        "Functions",
+        "Database tables",
+        "SQL queries",
+        "CSS files",
+        "Functions"
+    ),
+
+
+    # ========================================================
+    # HTML - 10 QUESTIONS
+    # ========================================================
+
+    (
+        "HTML",
+        "What does HTML stand for?",
+        "Hyper Text Markup Language",
+        "High Text Machine Language",
+        "Hyperlink Text Management Language",
+        "Home Tool Markup Language",
+        "Hyper Text Markup Language"
+    ),
+
+    (
+        "HTML",
+        "Which tag creates the largest heading?",
+        "<h6>",
+        "<head>",
+        "<h1>",
+        "<heading>",
+        "<h1>"
+    ),
+
+    (
+        "HTML",
+        "Which tag creates a paragraph?",
+        "<para>",
+        "<text>",
+        "<p>",
+        "<paragraph>",
+        "<p>"
+    ),
+
+    (
+        "HTML",
+        "Which tag creates a hyperlink?",
+        "<link>",
+        "<a>",
+        "<href>",
+        "<url>",
+        "<a>"
+    ),
+
+    (
+        "HTML",
+        "Which tag displays an image?",
+        "<image>",
+        "<img>",
+        "<picture>",
+        "<src>",
+        "<img>"
+    ),
+
+    (
+        "HTML",
+        "Which attribute specifies the image source?",
+        "href",
+        "src",
+        "link",
+        "url",
+        "src"
+    ),
+
+    (
+        "HTML",
+        "Which tag creates an unordered list?",
+        "<ol>",
+        "<ul>",
+        "<list>",
+        "<li>",
+        "<ul>"
+    ),
+
+    (
+        "HTML",
+        "Which tag creates a line break?",
+        "<break>",
+        "<lb>",
+        "<br>",
+        "<newline>",
+        "<br>"
+    ),
+
+    (
+        "HTML",
+        "Which tag creates a button?",
+        "<btn>",
+        "<button>",
+        "<click>",
+        "<inputbutton>",
+        "<button>"
+    ),
+
+    (
+        "HTML",
+        "Which attribute provides alternative text for an image?",
+        "title",
+        "alt",
+        "text",
+        "description",
+        "alt"
+    ),
+
+
+    # ========================================================
+    # CSS - 10 QUESTIONS
+    # ========================================================
+
+    (
+        "CSS",
+        "What does CSS stand for?",
+        "Computer Style Sheets",
+        "Cascading Style Sheets",
+        "Creative Style System",
+        "Colorful Style Sheets",
+        "Cascading Style Sheets"
+    ),
+
+    (
+        "CSS",
+        "Which property changes text color?",
+        "font-color",
+        "text-color",
+        "color",
+        "foreground",
+        "color"
+    ),
+
+    (
+        "CSS",
+        "Which property changes the background color?",
+        "background-color",
+        "bg-color",
+        "background",
+        "color-background",
+        "background-color"
+    ),
+
+    (
+        "CSS",
+        "Which property changes font size?",
+        "text-size",
+        "font-size",
+        "size",
+        "font",
+        "font-size"
+    ),
+
+    (
+        "CSS",
+        "Which property makes text bold?",
+        "font-weight",
+        "text-bold",
+        "bold",
+        "font-style",
+        "font-weight"
+    ),
+
+    (
+        "CSS",
+        "Which symbol selects an element by ID?",
+        ".",
+        "#",
+        "*",
+        "@",
+        "#"
+    ),
+
+    (
+        "CSS",
+        "Which symbol selects an element by class?",
+        "#",
+        ".",
+        "@",
+        "&",
+        "."
+    ),
+
+    (
+        "CSS",
+        "Which property controls space inside an element?",
+        "margin",
+        "padding",
+        "border",
+        "spacing",
+        "padding"
+    ),
+
+    (
+        "CSS",
+        "Which property controls space outside an element?",
+        "padding",
+        "margin",
+        "border",
+        "outside",
+        "margin"
+    ),
+
+    (
+        "CSS",
+        "Which layout system is commonly used for flexible one-dimensional layouts?",
+        "Float",
+        "Flexbox",
+        "Table",
+        "Inline",
+        "Flexbox"
+    ),
+
+
+    # ========================================================
+    # SQL - 10 QUESTIONS
+    # ========================================================
+
+    (
+        "SQL",
+        "What does SQL stand for?",
+        "Structured Query Language",
+        "Simple Query Language",
+        "System Query Language",
+        "Structured Question Language",
+        "Structured Query Language"
+    ),
+
+    (
+        "SQL",
+        "Which command is used to retrieve data?",
+        "GET",
+        "SELECT",
+        "FETCHDATA",
+        "READ",
+        "SELECT"
+    ),
+
+    (
+        "SQL",
+        "Which command is used to add new records?",
+        "ADD",
+        "INSERT",
+        "CREATE",
+        "PUT",
+        "INSERT"
+    ),
+
+    (
+        "SQL",
+        "Which command is used to modify existing records?",
+        "CHANGE",
+        "MODIFY",
+        "UPDATE",
+        "EDIT",
+        "UPDATE"
+    ),
+
+    (
+        "SQL",
+        "Which command removes records from a table?",
+        "REMOVE",
+        "DELETE",
+        "DROP ROW",
+        "CLEAR",
+        "DELETE"
+    ),
+
+    (
+        "SQL",
+        "Which clause filters rows?",
+        "FILTER",
+        "WHERE",
+        "HAVINGONLY",
+        "SEARCH",
+        "WHERE"
+    ),
+
+    (
+        "SQL",
+        "Which clause sorts query results?",
+        "SORT BY",
+        "ORDER BY",
+        "GROUP BY",
+        "SORT",
+        "ORDER BY"
+    ),
+
+    (
+        "SQL",
+        "Which keyword removes duplicate results?",
+        "UNIQUE",
+        "DISTINCT",
+        "ONLY",
+        "DIFFERENT",
+        "DISTINCT"
+    ),
+
+    (
+        "SQL",
+        "Which function counts rows?",
+        "TOTAL()",
+        "COUNT()",
+        "ROWS()",
+        "NUMBER()",
+        "COUNT()"
+    ),
+
+    (
+        "SQL",
+        "Which command creates a new table?",
+        "NEW TABLE",
+        "CREATE TABLE",
+        "MAKE TABLE",
+        "ADD TABLE",
+        "CREATE TABLE"
+    ),
+
+
+    # ========================================================
+    # FLASK - 10 QUESTIONS
+    # ========================================================
+
+    (
+        "Flask",
+        "What is Flask?",
+        "A Python web framework",
+        "A database",
+        "A JavaScript library",
+        "An operating system",
+        "A Python web framework"
+    ),
+
+    (
+        "Flask",
+        "Which Python package provides Flask?",
+        "flask",
+        "django",
+        "requests",
+        "numpy",
+        "flask"
+    ),
+
+    (
+        "Flask",
+        "Which decorator defines a URL route?",
+        "@app.route",
+        "@app.url",
+        "@route.url",
+        "@flask.path",
+        "@app.route"
+    ),
+
+    (
+        "Flask",
+        "Which function renders an HTML template?",
+        "show_template()",
+        "render_template()",
+        "html()",
+        "template()",
+        "render_template()"
+    ),
+
+    (
+        "Flask",
+        "Which object is used to access incoming request data?",
+        "request",
+        "input",
+        "incoming",
+        "data",
+        "request"
+    ),
+
+    (
+        "Flask",
+        "Which function returns JSON responses?",
+        "return_json()",
+        "jsonify()",
+        "json_response()",
+        "make_json()",
+        "jsonify()"
+    ),
+
+    (
+        "Flask",
+        "Which object is commonly used to store user session data?",
+        "session",
+        "cookie_data",
+        "storage",
+        "user_data",
+        "session"
+    ),
+
+    (
+        "Flask",
+        "Which HTTP method is commonly used to submit form data?",
+        "GET",
+        "POST",
+        "SEND",
+        "PUTFORM",
+        "POST"
+    ),
+
+    (
+        "Flask",
+        "Which file is commonly used to start a Flask application?",
+        "app.py",
+        "flask.html",
+        "server.css",
+        "main.sql",
+        "app.py"
+    ),
+
+    (
+        "Flask",
+        "Which command commonly starts a Flask development server?",
+        "python app.py",
+        "run flask now",
+        "start flask",
+        "flask start server only",
+        "python app.py"
+    )
 ]
 
 
-with app.app_context():
+# ============================================================
+# VERIFY QUESTION COUNT
+# ============================================================
 
-    db.session.add_all(questions)
-
-    db.session.commit()
+if len(questions) != 100:
 
     print(
-        f"{len(questions)} questions added successfully!"
+        f"ERROR: Expected 100 questions, "
+        f"but found {len(questions)}."
     )
+
+    raise SystemExit(1)
+
+
+# ============================================================
+# CONNECT TO DATABASE
+# ============================================================
+
+connection = sqlite3.connect(
+    DB_PATH
+)
+
+cursor = connection.cursor()
+
+
+# ============================================================
+# CREATE QUESTIONS TABLE
+# ============================================================
+
+cursor.execute(
+    """
+    CREATE TABLE IF NOT EXISTS questions (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        category TEXT NOT NULL,
+        question TEXT NOT NULL,
+        option1 TEXT NOT NULL,
+        option2 TEXT NOT NULL,
+        option3 TEXT NOT NULL,
+        option4 TEXT NOT NULL,
+        answer TEXT NOT NULL
+    )
+    """
+)
+
+
+# ============================================================
+# REMOVE OLD QUESTIONS
+# ============================================================
+
+cursor.execute(
+    "DELETE FROM questions"
+)
+
+
+# ============================================================
+# RESET AUTOINCREMENT
+# ============================================================
+
+try:
+
+    cursor.execute(
+        "DELETE FROM sqlite_sequence "
+        "WHERE name = 'questions'"
+    )
+
+except sqlite3.OperationalError:
+
+    pass
+
+
+# ============================================================
+# INSERT 100 QUESTIONS
+# ============================================================
+
+cursor.executemany(
+    """
+    INSERT INTO questions (
+        category,
+        question,
+        option1,
+        option2,
+        option3,
+        option4,
+        answer
+    )
+    VALUES (?, ?, ?, ?, ?, ?, ?)
+    """,
+    questions
+)
+
+
+# ============================================================
+# SAVE DATABASE
+# ============================================================
+
+connection.commit()
+
+
+# ============================================================
+# DISPLAY RESULTS
+# ============================================================
+
+print()
+print("=" * 60)
+print("       QUIZMASTER QUESTION DATABASE")
+print("=" * 60)
+
+print()
+
+print(
+    f"Successfully added {len(questions)} questions."
+)
+
+print()
+
+print("Questions by category:")
+print("-" * 60)
+
+
+cursor.execute(
+    """
+    SELECT category, COUNT(*)
+    FROM questions
+    GROUP BY category
+    ORDER BY category
+    """
+)
+
+categories = cursor.fetchall()
+
+
+for category, count in categories:
+
+    print(
+        f"{category:<20} {count} questions"
+    )
+
+
+print("-" * 60)
+
+
+cursor.execute(
+    "SELECT COUNT(*) FROM questions"
+)
+
+total = cursor.fetchone()[0]
+
+
+print(
+    f"{'TOTAL':<20} {total} questions"
+)
+
+print()
+
+print("Database:")
+print(DB_PATH)
+
+print()
+
+print("Done!")
+
+print("=" * 60)
+
+
+# ============================================================
+# CLOSE DATABASE
+# ============================================================
+
+cursor.close()
+
+connection.close()
